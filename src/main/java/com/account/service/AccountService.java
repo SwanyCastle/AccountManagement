@@ -6,7 +6,6 @@ import com.account.dto.AccountDto;
 import com.account.exception.AccountException;
 import com.account.repository.AccountRepository;
 import com.account.repository.AccountUserRepository;
-import com.account.type.AccountStatus;
 import com.account.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
-import static com.account.type.AccountStatus.*;
+import static com.account.type.AccountStatus.IN_USE;
 
 @Service
 @RequiredArgsConstructor
@@ -34,6 +33,8 @@ public class AccountService {
         AccountUser accountUser = accountUserRepository.findById(userId)
                 .orElseThrow(() -> new AccountException(ErrorCode.USER_NOT_FOUND));
 
+        validateCreateAccount(accountUser);
+
         String newAccountNumber = accountRepository.findFirstByOrderByIdDesc()
                 .map(account -> (Integer.parseInt(account.getAccountNumber())) + 1 + "")
                 .orElse("1000000000");
@@ -49,5 +50,11 @@ public class AccountService {
                         .build()
                 )
         );
+    }
+
+    private void validateCreateAccount(AccountUser accountUser) {
+        if(accountRepository.countByAccountUser(accountUser) >= 10) {
+            throw new AccountException(ErrorCode.MAX_COUNT_PER_USER);
+        }
     }
 }

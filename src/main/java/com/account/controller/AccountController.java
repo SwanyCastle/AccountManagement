@@ -1,6 +1,5 @@
 package com.account.controller;
 
-import com.account.dto.AccountDto;
 import com.account.dto.CreateAccount;
 import com.account.service.AccountService;
 import jakarta.validation.Valid;
