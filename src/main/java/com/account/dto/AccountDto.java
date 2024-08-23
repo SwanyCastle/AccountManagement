@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class AccountDto {
+    // controller 와 service 간의 데이터를 주고받기위한 DTO
     private Long userId;
     private String accountNumber;
     private Long balance;
@@ -25,6 +26,7 @@ public class AccountDto {
         return AccountDto.builder()
                 .userId(account.getAccountUser().getId())
                 .accountNumber(account.getAccountNumber())
+                .balance(account.getBalance())
                 .registeredAt(account.getRegisteredAt())
                 .unRegisteredAt(account.getUnRegisteredAt())
                 .build();
