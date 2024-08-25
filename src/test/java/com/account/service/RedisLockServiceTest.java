@@ -36,7 +36,7 @@ class RedisLockServiceTest {
         // when
         // then
         assertDoesNotThrow(
-                () -> redisLockService.accountUnLock("123")
+                () -> redisLockService.accountLock("123")
         );
     }
 
@@ -51,7 +51,7 @@ class RedisLockServiceTest {
         // when
         AccountException exception = assertThrows(
                 AccountException.class,
-                () -> redisLockService.accountUnLock("123")
+                () -> redisLockService.accountLock("123")
         );
 
         // then
