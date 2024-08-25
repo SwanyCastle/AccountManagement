@@ -32,12 +32,19 @@ public class AccountController {
     public List<AccountInfo> getAccountsByUserId(
             @RequestParam("user_id") Long userId
     ) {
-        return accountService.getAccountByUserId(userId).stream()
+        return accountService.getAccountsByUserId(userId).stream()
                 .map(accountDto -> AccountInfo.builder()
                         .accountNumber(accountDto.getAccountNumber())
                         .balance(accountDto.getBalance())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/account/{accountId}")
+    public AccountInfo getAccountByAccountId(
+            @PathVariable("accountId") Long accountId
+    ) {
+        return accountService.getAccountByAccountId(accountId);
     }
 
     @DeleteMapping("/account")

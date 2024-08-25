@@ -260,7 +260,7 @@ class AccountServiceTest {
     }
 
     @Test
-    void successGetAccountByUserId() {
+    void successGetAccountsByUserId() {
         // given
         AccountUser pobi = AccountUser.builder().id(12L).name("Pobi").build();
         List<Account> accountList = Arrays.asList(
@@ -287,7 +287,7 @@ class AccountServiceTest {
                 .willReturn(accountList);
 
         // when
-        List<AccountDto> accountDtoList = accountService.getAccountByUserId(1L);
+        List<AccountDto> accountDtoList = accountService.getAccountsByUserId(1L);
 
         // then
         assertEquals(3, accountDtoList.size());
@@ -307,7 +307,7 @@ class AccountServiceTest {
 
         // when
         AccountException accountException = assertThrows(AccountException.class,
-                () -> accountService.getAccountByUserId(1L));
+                () -> accountService.getAccountsByUserId(1L));
 
         // then
         assertEquals(ErrorCode.USER_NOT_FOUND, accountException.getErrorCode());

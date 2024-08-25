@@ -3,6 +3,7 @@ package com.account.service;
 import com.account.domain.Account;
 import com.account.domain.AccountUser;
 import com.account.dto.AccountDto;
+import com.account.dto.AccountInfo;
 import com.account.exception.AccountException;
 import com.account.repository.AccountRepository;
 import com.account.repository.AccountUserRepository;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.account.type.AccountStatus.IN_USE;
@@ -96,7 +98,7 @@ public class AccountService {
     }
 
     @Transactional
-    public List<AccountDto> getAccountByUserId(Long userId) {
+    public List<AccountDto> getAccountsByUserId(Long userId) {
         AccountUser accountUser = accountUserRepository.findById(userId)
                 .orElseThrow(() -> new AccountException(USER_NOT_FOUND));
 
@@ -106,5 +108,15 @@ public class AccountService {
         return accounts.stream()
                 .map(AccountDto::fromEntity)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public AccountInfo getAccountByAccountId(Long accountId) {
+        Optional<Account> optionalAccount = accountRepository.findById(accountId);
+        Account account = optionalAccount.get();
+        return AccountInfo.builder()
+                .accountNumber(account.getAccountNumber())
+                .balance(account.getBalance())
+                .build();
     }
 }
