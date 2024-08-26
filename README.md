@@ -1,13 +1,17 @@
 # 💻 계좌 관리 프로젝트
   계좌 관리 프로젝트는 사용자와 계좌의 정보를 저장하고 있고, 외부에서 거래를 요청할 경우 <br>
   거래 정보를 받아 계좌에서 해당 금액만큼 잔액을 줄이거나 늘리는 거래관리 및 계좌 관리하는 프로젝트
+<br>
+<br>
 
 # 🛠️ 사용 기술
 - **Java, Spring Boot, Gradle**
 - **H2, Spring Data JPA**
 - **Redis, Redisson**
-  * Spring 3.x.x 및 Java 17 이상 에서 호환되는 Embedded Redis 라이브러리가 없어
-    Docker 로 Redis 서버 띄워서 진행
+
+### 📌 Spring 3.x.x 및 Java 17 이상 에서 호환되는 Embedded Redis 라이브러리가 없어 Docker 로 Redis 서버 띄워서 진행
+<br>
+<br>
 
 # 🗓️ 기능
 #### 사용자
@@ -48,8 +52,10 @@
     
   - 거래 확인
     조회하고 싶은 거래 id에 해당하는 거래가 없는경우 **실패응답**을 반환하고 그 외의 경우 **성공응답**을 반환
+<br>
+<br>
 
-#### API 스펙
+# API 스펙
 <table>
   <thead>
     <th>분류</th>
