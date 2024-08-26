@@ -5,9 +5,42 @@
 <br>
 
 # 🛠️ 사용 기술
-- **Java, Spring Boot, Gradle**
-- **H2, Spring Data JPA**
-- **Redis, Redisson**
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Version</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Spring Boot</td>
+      <td>3.3.3</td>
+    </tr>
+    <tr>
+      <td>Gradle</td>
+      <td>8.8</td>
+    </tr>
+    <tr>
+      <td>Java</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <td>H2</td>
+      <td>2.2.224</td>
+    </tr>    
+    <tr>
+      <td>Spring Data JPA</td>
+      <td>3.3.3</td>
+    </tr>  
+    <tr>
+      <td>Redis</td>
+      <td>7.4.0</td>
+    </tr>
+    <tr>
+      <td>Redisson</td>
+      <td>3.32.0</td>
+    </tr>
+  </tbody>
+</table>
 
 ### 📌 Spring 3.x.x 및 Java 17 이상 에서 호환되는 Embedded Redis 라이브러리가 없어 Docker 로 Redis 서버 띄워서 진행
 <br>
