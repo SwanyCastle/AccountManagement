@@ -42,7 +42,7 @@ public class AccountService {
         validateCreateAccount(accountUser);
 
         String newAccountNumber = accountRepository.findFirstByOrderByIdDesc()
-                .map(account -> (Integer.parseInt(account.getAccountNumber())) + 1 + "")
+                .map(account -> String.valueOf(Integer.parseInt(account.getAccountNumber()) + 1))
                 .orElse("1000000000");
 
         return AccountDto.fromEntity(
@@ -115,8 +115,9 @@ public class AccountService {
 
     @Transactional
     public AccountInfo getAccountByAccountId(Long accountId) {
-        Optional<Account> optionalAccount = accountRepository.findById(accountId);
-        Account account = optionalAccount.get();
+        Optional<Account> optionalAccount =
+                Optional.of(accountRepository.findById(accountId))
+                        .orElseThrow(() -> new AccountException(ACCOUNT_NOT_FOUND));
         return AccountInfo.builder()
                 .accountNumber(account.getAccountNumber())
                 .balance(account.getBalance())

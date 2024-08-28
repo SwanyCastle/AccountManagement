@@ -28,8 +28,7 @@ public class RedisLockService {
             }
         } catch (AccountException e) {
             throw e;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             log.error("Redis lock failed", e);
         }
     }
